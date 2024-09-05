@@ -79,8 +79,6 @@ io.on("connection", (client) => {
   });
 
   client.on("createOffer", ({ roomId, clientId, offer }) => {
-    console.log("Offer Created ", roomId, clientId);
-
     const room = rooms.find((room) => room.id === roomId);
     if (room && room.owner === client.id) {
       const client = io.sockets.sockets.get(clientId);
@@ -97,8 +95,6 @@ io.on("connection", (client) => {
   });
 
   client.on("iceCandidate", ({ roomId, clientId, candidate }) => {
-    console.log("Ice Candidate", roomId, clientId, candidate);
-
     const room = rooms.find((room) => room.id === roomId);
     if (room) {
       if (room.owner === client.id) {
